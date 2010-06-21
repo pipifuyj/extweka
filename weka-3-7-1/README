@@ -1,0 +1,4 @@
+1,check out weka-3-7-1/
+2,javac weka/clusterers/SimpleKMeans.java 
+3,java weka/clusterers/SimpleKMeans -t data/wine.arff
+4,write your personal code 

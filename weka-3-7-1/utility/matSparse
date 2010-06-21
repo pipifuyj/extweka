@@ -1,0 +1,39 @@
+#!/usr/bin/env php
+<?php
+/**
+* sparse the matrix, input and output formats are defined in cluto
+*/
+$opt=getopt("m:o:");
+$file=$argv[$argc-1];
+if($opt['m'])ini_set("memory_limit",$opt['m']);
+$matrix=file($file,FILE_IGNORE_NEW_LINES);
+if($opt['o']){
+    $option=array(count($matrix),count(preg_split("/\s+/",trim($matrix[0]))),0);
+}else{
+    $option=array_shift($matrix);
+    $option=preg_split("/\s+/",trim($option));
+    $option[2]=0;
+}
+
+$f=tmpfile();
+while(list($k,$v)=each($matrix)){
+    $v=preg_split("/\s+/",trim($v));
+    while(list($kk,$vv)=each($v)){
+        if($vv!="0"){
+            $option[2]++;
+            fwrite($f,$kk+1);
+            fwrite($f," ");
+            fwrite($f,$vv);
+            fwrite($f," ");
+        }
+    }
+    fwrite($f,"\n");
+}
+
+echo join(" ",$option),"\n";
+
+fseek($f,0);
+while(!feof($f)){
+    echo fread($f,8192);
+}
+?>

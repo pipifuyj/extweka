@@ -1,0 +1,18 @@
+#!/usr/bin/env php
+<?php
+/**
+ * show indices of items in hc
+ */
+$usage="hcIndex file.hc\n";
+if($argc==1)exit($usage);
+$hc=$argv[$argc-1];
+require("hcRead.php");
+$indices=array();
+foreach($hc as $line){
+	foreach($line[0] as $item){
+		if(isset($indices[$item]))continue;
+		$indices[$item]=true;
+		echo $item,"\n";
+	}
+}
+?>

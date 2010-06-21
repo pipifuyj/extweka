@@ -1,0 +1,450 @@
+#!/usr/bin/php
+<?php
+class iLink{
+	public $clique;
+	public $item;
+	public $label;
+	public $link;
+	public $data;
+	public function iLink(){
+		$this->clique=array();
+		$this->item=array();
+		$this->label=array();
+		$this->link=array();
+		$this->data=array();
+		return "initialize iLink.";
+	}
+	public function distance($d1,$d2){
+		$A=$B=$AB=0;
+		foreach($d1 as $i=>$v1)if(is_numeric($v1)){
+			$A+=$v1*$v1;
+			if(is_numeric($v2=$d2[$i])){
+				unset($d2[$i]);
+				$B+=$v2*$v2;
+				$AB+=$v1*$v2;
+			}
+		}
+		foreach($d2 as $i=>$v2)if(is_numeric($v2)){
+			$B+=$v2*$v2;
+		}
+		return 1-$AB/sqrt($A*$B);
+	}
+	public function getDistance($a,$b){
+		return $this->distance($this->data[$a],$this->data[$b]);
+	}
+	public function err($string){
+		printf("%s\n",$string);
+	}
+	public function clearCliques(){
+		$this->clique=array();
+	}
+	public function clearItems(){
+		$this->item=array();
+	}
+	public function clearLabels(){
+		$this->label=array();
+	}
+	public function clearLinks(){
+		$this->link=array();
+	}
+	public function clearData(){
+		$this->data=array();
+	}
+	public function countCliques(){
+		return count($this->clique);
+	}
+	public function countItems(){
+		return count($this->item);
+	}
+	public function countLabels($label=null){
+		if($label===null)	return count($this->label);
+		else return count($this->getLabels($label));
+	}
+	public function countLinks($link=1){
+		$count=0;
+		foreach($this->link as $a=>$os){
+			foreach($os as $b=>$l){
+				if($a<$b&&$l==$link)$count++;
+			}
+		}
+		return $count;
+	}
+	public function setLabel($o,$label){
+		$this->label[$o]=$label;
+		return "setLabel $o be $label.";
+	}
+	public function setLink($a,$b,$link=1){
+		if($link)$this->link[$a][$b]=$this->link[$b][$a]=$link;
+		else{
+			unset($this->link[$a][$b]);
+			unset($this->link[$b][$a]);
+		}
+		return "setLink $a and $b be $link.";
+	}
+	public function getLabel($o){
+		return $this->label[$o];
+	}
+	public function getLink($a,$b){
+		return $this->link[$a][$b];
+	}
+	public function getLabels($label){
+		return array_keys($this->label,$label);
+	}
+	public function getLinks($o,$l=1){
+		return array_keys($this->link[$o],$l);
+	}
+	public function showCliques($N=100){
+		for($i=0;$i<$N;$i++){
+			$clique=$this->clique[$i];
+			$items=$clique[0];
+			$sup=$clique[1];
+			$conf=$clique[2];
+			printf("%s(%s %s)\n",implode(" ",$items),$sup,$conf);
+		}
+	}
+	public function PCliques($out="/dev/stdout"){
+		foreach($this->clique as $clique){
+			$count=count($clique[0]);
+			$G=array();
+			foreach($clique[0] as $o){
+				$G[$this->getLabel($o)]++;
+			}
+			$P=0;
+			foreach($G as $g)$P+=$g*$g;
+			$P/=$count*$count;
+			file_put_contents($out,"$count {$clique[1]} {$clique[2]} $P\n",FILE_APPEND);
+		}
+	}
+	public function drawCliques($sup=0,$conf=0,$scale=1000){
+		$image=imagecreate($scale,$scale);
+		imagecolorallocate($image,0,0,0);
+		$red=imagecolorallocate($image,255,0,0);
+		$blue=imagecolorallocate($image,0,255,0);
+		if(!$sup||!$conf)foreach($this->clique as $clique){
+			if($clique[1]>$sup)$sup=$clique[1];
+			if($clique[2]>$conf)$conf=$clique[2];
+		}
+		foreach($this->clique as $clique){
+			$x=$scale*$clique[1]/$sup;
+			$y=$scale*$clique[2]/$conf;
+			$itemCount=count($clique[0]);
+			$label=array();
+			foreach($clique[0] as $item){
+				$label[$this->getLabel($item)]=true;
+			}
+			$labelCount=count($label);
+			imagefilledarc($image,$x,$y,$itemCount,$itemCount,0,360,$red,IMG_ARC_PIE);
+			imagefilledarc($image,$x,$y,$labelCount,$labelCount,0,360,$blue,IMG_ARC_PIE);
+			imagesetpixel($image,$x,$y,$red);
+		}
+		$file="/tmp/$sup-$conf-iLink.png";
+		imagepng($image,$file);
+		return "draw cliques to $file. sup=$sup, conf=$conf.";
+	}
+	public function showFilteredCliques($stdout="/dev/stdout"){
+		$c=0;
+		foreach($this->clique as $clique){
+			$flag=false;
+			$items=$clique[0];
+			$n=count($items);
+			for($i=0;$i<$n;$i++){
+				for($j=$i+1;$j<$n;$j++){
+					$I=$this->getLabel($items[$i]);
+					$J=$this->getLabel($items[$j]);
+					if($I!=$J){
+						$flag=true;
+						break;
+					}
+				}
+				if($flag)break;
+			}
+			if($flag){
+				$c++;
+				$s=sprintf("%s(%s %s)\n",implode(" ",$items),$clique[1],$clique[2]);
+				file_put_contents($stdout,$s,FILE_APPEND);
+			}
+		}
+		return "show $c filtered cliques.";
+	}
+	public function showCliqueLabels($N=100){
+		$n=$this->countCliques();
+		$c=0;
+		$f=array();
+		for($i=0;$i<$n&&$c<$N;$i++){
+			$clique=$this->clique[$i];
+			$items=$clique[0];
+			foreach($items as $o)if(!$f[$o]){
+				$c++;
+				$f[$o]=true;
+				$label=$this->getLabel($o);
+				printf("%d\t%s\n",$o,$label);
+			}
+		}
+		return "show $c clique labels.";
+	}
+	
+	/**
+	* Print the labels of items in links ordered by items' distances.
+	* @param integer $N the number of labels
+	* @return string
+	*/
+	public function showLinkLabels($N){		
+		$A=array();
+		$B=array();
+		$D=array();
+		foreach($this->link as $a=>$os){
+			foreach($os as $b=>$link)if($a<$b){
+				$A[]=$a;
+				$B[]=$b;
+				$D[]=$this->getDistance($a,$b);
+			}
+		}
+		array_multisort($D,"SORT_DESC",$A,$B);
+		$flag=array();
+		$c=0;
+		for($i=0;$c<$N;$i++){
+			if(!$flag[$A[$i]]){
+				$flag[$A[$i]]=true;
+				$c++;
+				printf("%d\t%s\n",$A[$i],$this->getLabel($A[$i]));
+			}
+			if(!$flag[$B[$i]]){
+				$flag[$B[$i]]=true;
+				$c++;
+				printf("%d\t%s\n",$B[$i],$this->getLabel($B[$i]));
+			}
+		}
+	}
+	public function showItemLabels(){
+		foreach($this->item as $o){
+			$label=$this->getLabel($o);
+			printf("%d\t%s\n",$o,$label);
+		}
+	}
+	public function showFilteredLinks($flag=false){
+		$c=0;
+		foreach($this->link as $a=>$os){
+			foreach($os as $b=>$link){
+				if($a<$b){
+					$la=$this->getLabel($a);
+					$lb=$this->getLabel($b);
+					if((($la==$lb)==($link==1))==$flag){
+						$c++;
+						printf("%d\t%d\t%d\n",$a,$b,$link);
+					}
+				}
+			}
+		}
+		return "show $c $flag links.";
+	}
+	public function readCliques($path){
+		$cliques=@file($path,FILE_IGNORE_NEW_LINES);
+		if(!$cliques)return $this->err("Can not access to $path");
+		$c=0;
+		foreach($cliques as $line)if($line){
+			$c++;
+			preg_match("/^(.+)\((.+)\)/",$line,$line);
+			$items=preg_split("/\s+/",trim($line[1]));
+			$line=preg_split("/\s+/",trim($line[2]));
+			$sup=$line[0];
+			if($pos=strpos($sup,"%"))$sup=substr($sup,0,$pos)/100;
+			$conf=$line[1];
+			if($pos=strpos($conf,"%"))$conf=substr($conf,0,$pos)/100;
+			$this->clique[]=array($items,$sup,$conf);
+		}
+		return "read $c cliques from $path.";
+	}
+	public function readItems($path){
+		$items=@file($path,FILE_IGNORE_NEW_LINES);
+		if(!$items)return $this->err("Can not access to $path");
+		$c=0;
+		foreach($items as $line)if($line){
+			$c++;
+			$line=preg_split("/\s+/",trim($line));
+			$item=array_shift($line);
+			$this->item[]=$item;
+		}
+		return "read $c items from $path.";
+	}
+	public function readLabels($path){
+		$labels=@file($path,FILE_IGNORE_NEW_LINES);
+		if(!$labels)return $this->err("Can not access to $path");
+		$count=count(preg_split("/\s+/",trim($labels[0])));
+		if($count==1){
+			$c=0;
+			foreach($labels as $o=>$label)if($label){
+				$c++;
+				$this->setLabel($o,$label);
+			}
+		}elseif($count>1){
+			$c=0;
+			foreach($labels as $line)if($line){
+				$c++;
+				$line=preg_split("/\s+/",trim($line));
+				$o=array_shift($line);
+				$label=array_pop($line);
+				$this->setLabel($o,$label);
+			}
+		}
+		return "read $c labels from $path.";
+	}
+	public function readLinks($path){
+		$f=@fopen($path,"r");
+		if(!$f)return $this->err("Can not access to $path");
+		$c=0;
+		while(fscanf($f,"%d\t%d\t%d\n",$a,$b,$link)==3){
+			$c++;
+			$this->setLink($a,$b,$link);
+		}
+		fclose($f);
+		return "read $c links from $path.";
+	}
+	
+	/**
+	* Read data from arff formated file.
+	* @param $path
+	* @return string
+	*/
+	public function readData($path){
+		$f=@fopen($path,"r");
+		if(!$f)return $this->err("Can not access to $path");
+		while($s=fgets($f)){
+			$s=trim($s);
+			if($s=="@data"){
+				$c=0;
+				while($s=trim(fgets($f))){
+					if(substr($s,0,1)=="{"){
+						$s=preg_split("/\s*,\s*/",substr($s,1,-1));
+						foreach($s as $ss){
+							$ss=preg_split("/\s+/",$ss);
+							$this->data[$c][$ss[0]]=$ss[1];
+						}
+					}else{
+						$this->data[$c]=preg_split("/\s*,\s*/",$s);
+					}
+					$c++;
+				}
+				
+			}
+		}
+		printf("0:\n");
+		print_r($this->data[0]);
+		printf("%d:\n",$c-1);
+		print_r($this->data[$c-1]);
+		return "read $c data from $path";
+	}
+	public function writeLinks($path){
+		$f=@fopen($path,"w");
+		if(!$f)return $this->err("Can not write to $path");
+		$c=0;
+		foreach($this->link as $a=>$os){
+			foreach($os as $b=>$link){
+				if($a<$b){
+					$c++;
+					fprintf($f,"%d\t%d\t%d\n",$a,$b,$link);
+				}
+			}
+		}
+		return "write $c links to $path.";
+	}
+	public function sortCliques(){
+		$items=array();
+		$sup=array();
+		$conf=array();
+		foreach($this->clique as $clique){
+			$items[]=$clique[0];
+			$sup[]=$clique[1];
+			$conf[]=$clique[2];
+		}
+		array_multisort($conf,$sup,$items);
+		$n=$this->countCliques();
+		$this->clearCliques();
+		for($i=0;$i<$n;$i++){
+			$this->clique[]=array($items[$i],$sup[$i],$conf[$i]);
+		}
+		return "sort cliques.";
+	}
+	public function generateRandomItems($N=100){
+		$min=0;
+		$max=$this->countLabels()-1;
+		$c=0;
+		$f=array();
+		while($c<$N){
+			$o=rand($min,$max);
+			if(!$f[$o]){
+				$c++;
+				$f[$o]=true;
+				$this->item[]=$o;
+			}
+		}
+		return "generate $c items.";
+	}
+	public function withCliques(){
+		$N=$this->countCliques();
+		foreach($this->clique as $clique){
+			$items=$clique[0];
+			$n=count($items);
+			for($i=0;$i<$n;$i++)for($j=$i+1;$j<$n;$j++){
+				$this->setLink($items[$i],$items[$j],1);
+			}
+		}
+		return "with $N cliques.";
+	}
+	public function withLabels(){
+		$n=$this->countLabels();
+		$keys=array_keys($this->label);
+		for($i=0;$i<$n;$i++)for($j=$i+1;$j<$n;$j++){
+			$a=$keys[$i];
+			$b=$keys[$j];
+			$link=$this->getLabel($a)==$this->getLabel($b)?1:-1;
+			$this->setLink($a,$b,$link);
+		}
+		for($i=0;$i<$n;$i++)for($j=$i+1;$j<$n;$j++){
+			$a=$keys[$i];
+			$b=$keys[$j];
+			$link=$this->getLink($a,$b);
+			$os=$this->getLinks($a,1);
+			foreach($os as $o)$this->setLink($o,$b,$link);
+			$os=$this->getLinks($b,1);
+			foreach($os as $o)$this->setLink($o,$a,$link);
+			if($link==1){
+				$os=$this->getLinks($a,-1);
+				foreach($os as $o)$this->setLink($o,$b,-1);
+				$os=$this->getLinks($b,-1);
+				foreach($os as $o)$this->setLink($o,$a,-1);
+			}
+		}
+		return "with $n labels.";
+	}
+	public function __call($method,$args){
+		$command="$method ".implode(" ",$args);
+		printf(`$command`);
+	}
+	public function cd($path=""){
+		printf(`cd $path`);
+		chdir($path);
+		return $this->pwd();
+	}
+	public function help(){
+		return "You can input METHOD(with PARAMS) and shell command.";
+	}
+	public function main($argc,$argv){
+		$f=fopen("php://stdin","r");
+		printf("Welcome to iLink!\n>>>");
+		while($s=fgets($f)){
+			$a=preg_split("/\s+/",trim($s));
+			$method=array_shift($a);
+			printf("++++++++++++++++++++++++++++++\n");
+			printf("+ Method: %s\n",$method);
+			printf("+ Params: %s\n",implode(",",$a));
+			printf("++++++++++++++++++++++++++++++\n");
+			$return=call_user_method_array($method,$this,$a);
+			print_r($return);
+			printf("\n>>>");
+		}
+	}
+}
+ini_set("memory_limit","1000M");
+$iLink=new iLink();
+$iLink->main($argc,$argv);
+?>

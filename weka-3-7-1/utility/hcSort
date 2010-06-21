@@ -1,0 +1,25 @@
+#!/usr/bin/env php
+<?php
+/**
+ * Sort hc
+ */
+$usage="hcSort 021 file.hc\n";
+if($argc!=3)exit($usage);
+$hc=$argv[2];
+require("hcRead.php");
+$HC=array(array(),array(),array());
+foreach($hc as &$line){
+	$HC[0][]=count($line[0]);
+	$HC[1][]=$line[1];
+	$HC[2][]=$line[2];
+}
+$len=strlen($argv[1]);
+if($len==3){
+	array_multisort($HC[$argv[1][0]],SORT_DESC,$HC[$argv[1][1]],SORT_DESC,$HC[$argv[1][2]],SORT_DESC,$hc);
+}elseif($len==2){
+	array_multisort($HC[$argv[1][0]],SORT_DESC,$HC[$argv[1][1]],SORT_DESC,$hc);
+}else{
+	array_multisort($HC[$argv[1][0]],SORT_DESC,$hc);
+}
+require("hcWrite.php");
+?>

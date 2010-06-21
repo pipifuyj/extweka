@@ -1,0 +1,51 @@
+#!/usr/bin/php
+<?php
+/**
+* transpose the matrix in a mat file(the format of mat file is defined in cluto)
+* the output's indexes of rows and columns start from zero.
+*/
+ini_set("memory_limit","1000M");
+$file=$argv[1];
+$matrix=file($file,FILE_IGNORE_NEW_LINES);
+$option=array_shift($matrix);
+$option=preg_split("/\s+/",trim($option));
+
+if($option[2]){
+	$rows=array();
+	while(list($k,$v)=each($matrix)){
+		$v=preg_split("/\s+/",trim($v));
+		while(list($k1,$v1)=each($v)){
+			$v1--;
+			list($k2,$v2)=each($v);
+			$rows[$v1][$k]=$v2;
+		}
+ 	}
+    //output format is defined in hybrid
+    while(list($i,$row)=each($rows)){
+        while(list($j,$v)=each($row)){
+            echo $j," ";
+        }
+        echo "\n";
+    }
+    /**
+    for($i=0;$i<$option[1];$i++){
+        for($j=0;$j<$option[0];$j++){
+            echo $rows[$i][$j]?$rows[$i][$j]:0," ";
+        }
+        echo "\n";
+    }
+    */
+}else{
+    $rows=array();
+    for($i=0,$ii=count($matrix);$i<$ii;$i++){
+        $rows[]=preg_split("/\s+/",trim($matrix[$i]));
+        unset($matrix[$i]);
+    }
+    for($i=0,$ii=count($rows[0]);$i<$ii;$i++){
+        for($j=0;$j<=$k;$j++){
+            echo $rows[$j][$i]," ";
+        }
+        echo "\n";
+    }
+}
+?>
