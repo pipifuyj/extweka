@@ -1,0 +1,20 @@
+Wekax in python
+
+1,Introduction
+Wekax in Python is a collection of data mining tools using the python programming language.
+
+2,Install
+Check out the sources at first:
+
+svn checkout http://wekax.googlecode.com/svn/trunk/python path_to_wekax
+Create a link to any directory in sys.path, for example:
+
+ln -s path_to_wekax /usr/lib/python2.6/wekax
+
+3,Get started
+from wekax.core import Instance,Instances
+from wekax.clusterers import Clusterer
+clusterer=Clusterer(numClusters)
+instances=Instances(type=Instance)
+instances.load(file(path_to_file))
+clusterer.build(instances)
