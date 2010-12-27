@@ -1,0 +1,261 @@
+About to initialize Organism with chromosomes ...
+Clusterer building loop 0 ...
+Moved 1504 instances
+E=1.934783	 P=0.521941	 F=0.329329	 NMI=0.230704
+Clusterer building loop 1 ...
+Moved 442 instances
+E=1.605861	 P=0.599734	 F=0.364761	 NMI=0.336484
+Clusterer building loop 2 ...
+Moved 179 instances
+E=1.508122	 P=0.614362	 F=0.375481	 NMI=0.367322
+Clusterer building loop 3 ...
+Moved 103 instances
+E=1.484708	 P=0.619681	 F=0.381447	 NMI=0.375139
+Clusterer building loop 4 ...
+Moved 63 instances
+E=1.464744	 P=0.623670	 F=0.381784	 NMI=0.382043
+Clusterer building loop 5 ...
+Moved 28 instances
+E=1.462219	 P=0.624335	 F=0.376220	 NMI=0.383015
+Clusterer building loop 6 ...
+Moved 29 instances
+E=1.466965	 P=0.624335	 F=0.371316	 NMI=0.381661
+Clusterer building loop 7 ...
+Moved 21 instances
+E=1.465106	 P=0.624335	 F=0.371912	 NMI=0.382145
+Clusterer building loop 8 ...
+Moved 28 instances
+E=1.461845	 P=0.624335	 F=0.376048	 NMI=0.383115
+Clusterer building loop 9 ...
+Moved 22 instances
+E=1.452637	 P=0.625665	 F=0.390910	 NMI=0.386125
+Clusterer building loop 10 ...
+Moved 9 instances
+E=1.451470	 P=0.625000	 F=0.395690	 NMI=0.386572
+Clusterer building loop 11 ...
+Moved 1 instances
+E=1.450992	 P=0.625000	 F=0.396571	 NMI=0.386740
+Clusterer building loop 12 ...
+Converged!
+2	0	106	0	0	0	0	0	4	0	4	0	0
+0	1	4	0	0	1	0	0	74	1	0	0	1
+1	1	9	0	0	64	1	6	15	11	5	1	10
+1	0	2	0	0	0	0	0	65	0	5	0	0
+0	0	6	0	0	1	0	0	47	0	0	0	0
+0	0	22	0	1	1	1	0	13	0	2	0	0
+0	0	54	0	1	0	0	0	0	0	127	0	0
+0	0	84	0	0	1	0	1	2	0	24	0	0
+34	1	69	0	35	2	0	0	63	1	3	0	0
+0	0	34	0	0	1	0	2	24	0	5	0	0
+0	13	21	15	0	3	9	51	1	24	0	19	28
+0	0	63	0	5	6	0	0	3	0	38	0	0
+0	0	134	0	0	0	0	0	8	0	6	0	0
+Clusterer building loop 0 ...
+Moved 1504 instances
+E=1.842297	 P=0.565160	 F=0.348445	 NMI=0.264913
+Clusterer building loop 1 ...
+Moved 354 instances
+E=1.605901	 P=0.611702	 F=0.421206	 NMI=0.341077
+Clusterer building loop 2 ...
+Moved 126 instances
+E=1.567398	 P=0.630984	 F=0.425450	 NMI=0.353000
+Clusterer building loop 3 ...
+Moved 64 instances
+E=1.553324	 P=0.637633	 F=0.422603	 NMI=0.357101
+Clusterer building loop 4 ...
+Moved 52 instances
+E=1.531612	 P=0.639628	 F=0.424123	 NMI=0.364195
+Clusterer building loop 5 ...
+Moved 45 instances
+E=1.495654	 P=0.640293	 F=0.427786	 NMI=0.376285
+Clusterer building loop 6 ...
+Moved 37 instances
+E=1.474501	 P=0.642287	 F=0.428418	 NMI=0.383042
+Clusterer building loop 7 ...
+Moved 25 instances
+E=1.451156	 P=0.642287	 F=0.431611	 NMI=0.390243
+Clusterer building loop 8 ...
+Moved 11 instances
+E=1.439894	 P=0.643617	 F=0.434143	 NMI=0.393948
+Clusterer building loop 9 ...
+Moved 2 instances
+E=1.435952	 P=0.644282	 F=0.434680	 NMI=0.395298
+Clusterer building loop 10 ...
+Converged!
+0	1	7	0	0	0	0	0	72	0	1	0	0
+1	1	8	0	1	65	0	6	16	11	4	1	10
+33	1	66	0	32	1	0	0	51	0	3	0	4
+1	0	54	0	7	2	0	0	14	0	28	0	0
+0	0	175	0	0	0	0	0	7	0	12	0	0
+0	0	6	0	0	2	0	0	78	0	0	0	1
+0	0	3	0	0	0	0	0	22	0	0	0	0
+0	0	0	0	0	0	0	0	41	0	1	0	0
+2	0	112	0	0	0	0	0	5	0	4	0	0
+0	0	19	0	0	2	0	3	11	0	5	0	0
+0	13	24	15	2	4	11	51	1	26	3	19	24
+1	0	56	0	0	4	0	0	1	0	136	0	0
+0	0	78	0	0	0	0	0	0	0	22	0	0
+Clusterer building loop 0 ...
+Moved 1504 instances
+E=1.838541	 P=0.573803	 F=0.330107	 NMI=0.259024
+Clusterer building loop 1 ...
+Moved 327 instances
+E=1.607044	 P=0.613697	 F=0.375620	 NMI=0.333287
+Clusterer building loop 2 ...
+Moved 103 instances
+E=1.538600	 P=0.615691	 F=0.389945	 NMI=0.355277
+Clusterer building loop 3 ...
+Moved 67 instances
+E=1.539380	 P=0.601729	 F=0.393156	 NMI=0.355390
+Clusterer building loop 4 ...
+Moved 29 instances
+E=1.534225	 P=0.599734	 F=0.393434	 NMI=0.357208
+Clusterer building loop 5 ...
+Moved 19 instances
+E=1.516539	 P=0.598404	 F=0.394906	 NMI=0.362809
+Clusterer building loop 6 ...
+Moved 18 instances
+E=1.503094	 P=0.599734	 F=0.396151	 NMI=0.366847
+Clusterer building loop 7 ...
+Moved 21 instances
+E=1.513028	 P=0.597074	 F=0.394428	 NMI=0.363456
+Clusterer building loop 8 ...
+Moved 26 instances
+E=1.536516	 P=0.594415	 F=0.391578	 NMI=0.355787
+Clusterer building loop 9 ...
+Moved 31 instances
+E=1.540450	 P=0.594415	 F=0.388500	 NMI=0.354770
+Clusterer building loop 10 ...
+Moved 24 instances
+E=1.526881	 P=0.605053	 F=0.394640	 NMI=0.359407
+Clusterer building loop 11 ...
+Moved 7 instances
+E=1.522811	 P=0.607713	 F=0.395910	 NMI=0.360752
+Clusterer building loop 12 ...
+Moved 4 instances
+E=1.516997	 P=0.609707	 F=0.397209	 NMI=0.362539
+Clusterer building loop 13 ...
+Moved 2 instances
+E=1.515331	 P=0.610372	 F=0.397483	 NMI=0.363035
+Clusterer building loop 14 ...
+Converged!
+32	1	64	0	29	2	0	0	42	0	2	0	0
+1	1	14	0	1	62	1	8	14	8	6	1	7
+0	0	46	0	1	2	0	0	3	0	96	0	0
+0	1	13	0	0	0	0	0	70	0	1	0	0
+0	0	148	0	0	0	0	0	2	0	8	0	0
+2	0	107	0	0	0	0	0	5	0	3	0	0
+0	0	80	0	0	0	0	3	2	0	27	0	0
+0	0	3	0	0	1	0	0	80	0	0	0	0
+0	0	18	0	4	1	0	0	45	2	1	0	0
+2	0	39	0	2	4	0	0	40	0	13	0	3
+0	13	24	15	0	7	10	49	1	27	1	19	29
+0	0	22	0	0	0	0	0	14	0	47	0	0
+1	0	30	0	5	1	0	0	1	0	14	0	0
+Clusterer building loop 0 ...
+Moved 1504 instances
+E=1.912807	 P=0.524601	 F=0.407587	 NMI=0.238337
+Clusterer building loop 1 ...
+Moved 425 instances
+E=1.603353	 P=0.605053	 F=0.485913	 NMI=0.337715
+Clusterer building loop 2 ...
+Moved 200 instances
+E=1.571492	 P=0.602394	 F=0.465989	 NMI=0.346605
+Clusterer building loop 3 ...
+Moved 113 instances
+E=1.514771	 P=0.605718	 F=0.449998	 NMI=0.364648
+Clusterer building loop 4 ...
+Moved 45 instances
+E=1.499235	 P=0.610372	 F=0.456399	 NMI=0.369763
+Clusterer building loop 5 ...
+Moved 30 instances
+E=1.484580	 P=0.615027	 F=0.456731	 NMI=0.374282
+Clusterer building loop 6 ...
+Moved 21 instances
+E=1.471582	 P=0.618351	 F=0.462682	 NMI=0.378665
+Clusterer building loop 7 ...
+Moved 18 instances
+E=1.463481	 P=0.621676	 F=0.468231	 NMI=0.381436
+Clusterer building loop 8 ...
+Moved 14 instances
+E=1.460116	 P=0.624335	 F=0.470554	 NMI=0.382748
+Clusterer building loop 9 ...
+Moved 3 instances
+E=1.465299	 P=0.625000	 F=0.470555	 NMI=0.381117
+Clusterer building loop 10 ...
+Moved 1 instances
+E=1.465616	 P=0.625000	 F=0.470039	 NMI=0.381056
+Clusterer building loop 11 ...
+Converged!
+0	0	6	0	0	0	0	0	150	0	0	0	1
+0	0	51	0	4	0	0	0	0	0	70	0	0
+1	0	18	0	0	2	0	0	2	0	78	0	0
+7	0	27	0	9	4	0	3	9	0	1	1	3
+1	14	6	0	0	5	0	0	4	1	3	14	28
+0	0	171	0	0	0	0	0	13	0	10	0	0
+0	0	39	0	0	1	0	2	12	0	7	0	0
+0	1	156	0	0	0	0	0	5	0	26	0	0
+2	0	15	0	1	53	0	5	25	3	11	1	5
+0	0	7	0	1	6	2	1	11	1	4	0	1
+0	0	4	15	2	7	9	49	1	30	3	4	1
+26	1	55	0	16	2	0	0	43	1	3	0	0
+1	0	53	0	9	0	0	0	44	1	3	0	0
+Clusterer building loop 0 ...
+Moved 1504 instances
+E=2.024546	 P=0.567819	 F=0.415412	 NMI=0.212946
+Clusterer building loop 1 ...
+Moved 369 instances
+E=1.669091	 P=0.619016	 F=0.448393	 NMI=0.330267
+Clusterer building loop 2 ...
+Moved 180 instances
+E=1.488020	 P=0.634973	 F=0.458078	 NMI=0.388076
+Clusterer building loop 3 ...
+Moved 82 instances
+E=1.475997	 P=0.627660	 F=0.449681	 NMI=0.389459
+Clusterer building loop 4 ...
+Moved 38 instances
+E=1.491290	 P=0.621676	 F=0.447492	 NMI=0.383115
+Clusterer building loop 5 ...
+Moved 22 instances
+E=1.482418	 P=0.622340	 F=0.451195	 NMI=0.385286
+Clusterer building loop 6 ...
+Moved 20 instances
+E=1.465758	 P=0.625665	 F=0.451773	 NMI=0.390293
+Clusterer building loop 7 ...
+Moved 19 instances
+E=1.463032	 P=0.628989	 F=0.450340	 NMI=0.390707
+Clusterer building loop 8 ...
+Moved 26 instances
+E=1.463521	 P=0.626995	 F=0.451741	 NMI=0.390133
+Clusterer building loop 9 ...
+Moved 10 instances
+E=1.454663	 P=0.630319	 F=0.455083	 NMI=0.392870
+Clusterer building loop 10 ...
+Moved 5 instances
+E=1.452465	 P=0.630984	 F=0.456241	 NMI=0.393479
+Clusterer building loop 11 ...
+Moved 1 instances
+E=1.450506	 P=0.631649	 F=0.456844	 NMI=0.394075
+Clusterer building loop 12 ...
+Converged!
+0	1	5	0	0	0	0	0	93	2	0	0	0
+0	0	33	0	0	1	0	1	15	0	5	0	0
+0	0	223	0	1	2	0	1	11	0	34	0	0
+0	0	9	0	1	0	0	0	3	0	1	0	0
+1	0	32	0	0	7	0	0	1	0	29	0	0
+1	0	17	0	1	7	0	1	20	0	16	0	1
+2	0	108	0	0	0	0	0	4	0	4	0	0
+0	13	13	15	0	15	11	55	2	32	3	10	35
+0	0	0	0	0	0	0	1	1	0	63	0	0
+29	1	99	0	36	2	0	0	51	1	4	1	0
+4	1	3	0	0	44	0	1	6	2	3	9	2
+1	0	7	0	0	2	0	0	112	0	0	0	1
+0	0	59	0	3	0	0	0	0	0	57	0	0
+GA
+KMeans
+E=1.450992	 P=0.625000	 F=0.396571	 NMI=0.386740
+E=1.435952	 P=0.644282	 F=0.434680	 NMI=0.395298
+E=1.515331	 P=0.610372	 F=0.397483	 NMI=0.363035
+E=1.465616	 P=0.625000	 F=0.470039	 NMI=0.381056
+E=1.450506	 P=0.631649	 F=0.456844	 NMI=0.394075
+[0.00090952064257089832]
